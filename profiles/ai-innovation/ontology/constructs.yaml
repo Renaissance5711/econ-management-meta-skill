@@ -1,0 +1,35 @@
+schema_version: 1
+constructs:
+  - id: ai-exposure
+    label: AI exposure
+    level: umbrella
+    children:
+      - ai-adoption
+      - ai-use-intensity
+      - ai-investment
+      - ai-human-capital
+      - ai-organizational-capability
+      - ai-technological-input
+      - ai-assisted-decision-making
+      - ai-automation
+      - ai-augmentation
+      - generative-ai-intervention
+  - id: innovation-outcomes
+    label: Innovation outcomes
+    level: umbrella
+    children:
+      - creativity-and-ideation
+      - innovation-process
+      - innovation-output
+      - innovation-quality
+      - innovation-novelty
+mapping_relationships:
+  - EXACT_EQUIVALENT
+  - NEAR_EQUIVALENT
+  - SUBDIMENSION_OF
+  - BROADER_THAN
+  - NARROWER_THAN
+  - RELATED_BUT_DISTINCT
+  - OBJECTIVE_PROXY_FOR
+  - AMBIGUOUS
+  - NON_EQUIVALENT

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Econ–Management Meta Project",
+  "type": "object",
+  "required": ["project_id", "topic", "created_at", "core_version", "profile", "normative_language", "current_stage"],
+  "additionalProperties": false,
+  "properties": {
+    "project_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "topic": {"type": "string", "minLength": 1},
+    "created_at": {"type": "string", "format": "date-time"},
+    "core_version": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+    "profile": {
+      "type": "object",
+      "required": ["id", "version"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string"},
+        "version": {"type": "string"}
+      }
+    },
+    "normative_language": {"const": "en"},
+    "current_stage": {"const": "00_intake"}
+  }
+}

@@ -1,0 +1,17 @@
+schema_version: 1
+moderators:
+  - id: ai-role
+    label: AI role
+    status: confirmatory_candidate
+    categories: [automation, augmentation, hybrid]
+    required_fields: [theoretical_mechanism, expected_direction, target_effect_pool, coding_rule]
+  - id: innovation-stage
+    label: Innovation stage
+    status: confirmatory_candidate
+    categories: [ideation, development, output, impact]
+    required_fields: [theoretical_mechanism, expected_direction, target_effect_pool, coding_rule]
+  - id: measurement-type
+    label: Measurement type
+    status: methodological
+    categories: [self-report, archival, patent, text-ml, experimental-rating]
+    required_fields: [coding_rule]

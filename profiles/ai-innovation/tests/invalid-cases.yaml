@@ -1,0 +1,9 @@
+cases:
+  - id: ai-final-decision
+    expected_error: PROFILE_WEAKENS_CORE
+    requirements:
+      ai_final_decision: true
+  - id: unverified-effects
+    expected_error: PROFILE_WEAKENS_CORE
+    requirements:
+      allow_unverified_effects: true

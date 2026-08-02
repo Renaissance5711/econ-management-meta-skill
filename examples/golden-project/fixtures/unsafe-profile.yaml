@@ -1,0 +1,4 @@
+profile:
+  id: unsafe-profile
+requirements:
+  allow_unverified_effects: true

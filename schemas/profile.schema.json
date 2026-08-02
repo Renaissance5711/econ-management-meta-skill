@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/econ-management-meta/profile.schema.json",
+  "title": "Econ–Management Meta Domain Profile",
+  "type": "object",
+  "required": ["profile", "extends", "requirements", "ontology", "coding"],
+  "additionalProperties": false,
+  "properties": {
+    "profile": {
+      "type": "object",
+      "required": ["id", "name", "version", "schema_version", "core_compatibility", "language", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+        "name": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+        "schema_version": {"const": 1},
+        "core_compatibility": {"type": "string", "minLength": 1},
+        "language": {"enum": ["en", "zh-CN"]},
+        "status": {"enum": ["experimental", "stable", "deprecated"]}
+      }
+    },
+    "extends": {"const": "core-management-meta"},
+    "requirements": {
+      "type": "object",
+      "required": [
+        "fulltext_reviewers",
+        "independent_fulltext_screening",
+        "human_effect_verification",
+        "construct_alignment_gate",
+        "estimand_alignment_gate",
+        "dependency_check",
+        "protocol_lock",
+        "analysis_spec_lock"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "fulltext_reviewers": {"type": "integer", "minimum": 2},
+        "independent_fulltext_screening": {"const": true},
+        "human_effect_verification": {"const": true},
+        "construct_alignment_gate": {"const": true},
+        "estimand_alignment_gate": {"const": true},
+        "dependency_check": {"const": true},
+        "protocol_lock": {"const": true},
+        "analysis_spec_lock": {"const": true}
+      }
+    },
+    "ontology": {
+      "type": "object",
+      "required": ["constructs"],
+      "additionalProperties": false,
+      "properties": {"constructs": {"type": "string", "minLength": 1}}
+    },
+    "coding": {
+      "type": "object",
+      "required": ["moderators"],
+      "additionalProperties": false,
+      "properties": {"moderators": {"type": "string", "minLength": 1}}
+    },
+    "search": {"type": "object"},
+    "risk_of_bias": {"type": "object"},
+    "reporting": {"type": "object"}
+  }
+}
