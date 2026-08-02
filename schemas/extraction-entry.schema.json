@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Dual Extraction Entry",
+  "type": "object",
+  "required": ["extraction_id", "timestamp", "report_id", "study_id", "field_id", "extractor", "value", "source_page", "source_quote", "verification_status"],
+  "additionalProperties": false,
+  "properties": {
+    "extraction_id": {"type": "string", "pattern": "^EXT-[A-F0-9]{16}$"},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "report_id": {"type": "string", "minLength": 1},
+    "study_id": {"type": "string", "minLength": 1},
+    "field_id": {"type": "string", "minLength": 1},
+    "extractor": {"type": "string", "minLength": 2},
+    "value": {},
+    "source_page": {"type": "string", "minLength": 1},
+    "source_quote": {"type": "string", "minLength": 3},
+    "verification_status": {"const": "HUMAN_RECORDED"}
+  }
+}

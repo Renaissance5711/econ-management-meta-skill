@@ -1,0 +1,9 @@
+schema_version: 1
+codes:
+  WRONG_TOPIC: The report does not address the eligible exposure-outcome relation.
+  WRONG_POPULATION: The population or analytical unit is outside scope.
+  WRONG_DESIGN: The study design is outside scope.
+  WRONG_OUTCOME: No eligible outcome is reported.
+  NOT_EMPIRICAL: The report contains no eligible empirical study.
+  DUPLICATE_REPORT: A more complete report in the same report family is used.
+  INSUFFICIENT_INFORMATION: Eligibility cannot be established after full-text review.

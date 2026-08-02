@@ -1,6 +1,6 @@
 schema_version: 1
 name: econ-management-meta
-version: 0.1.0
+version: 0.2.0
 root_skill: SKILL.md
 stage_skills_glob: skills/*/SKILL.md
 cli: emm

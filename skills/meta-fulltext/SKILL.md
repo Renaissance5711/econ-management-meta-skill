@@ -1,7 +1,7 @@
 ---
 name: meta-fulltext
 description: Reconcile reports, studies, and full-text eligibility decisions.
-version: 0.1.0
+version: 0.2.0
 license: Apache-2.0
 status: experimental
 ---
@@ -24,6 +24,6 @@ Create new, versioned files inside the corresponding project stage and append de
 
 Stop on missing provenance, invalid profile or project schema, unresolved reviewer conflict, an unlocked prerequisite stage, a stale integrity lock, or any attempt to weaken core gates.
 
-## v0.1.0 availability
+## v0.2.0 availability
 
-Full-text processing and report-family reconciliation are UNAVAILABLE_IN_VERSION.
+Human-verified report-family and study-family assignments are AVAILABLE_IN_VERSION. PDF acquisition, text extraction, and automated family matching remain UNAVAILABLE_IN_VERSION.

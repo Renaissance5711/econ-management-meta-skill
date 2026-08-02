@@ -1,0 +1,15 @@
+schema_version: 1
+concept_blocks:
+  ai:
+    - artificial intelligence
+    - machine learning
+    - generative AI
+    - large language model
+  innovation:
+    - innovation
+    - creativity
+    - patent
+    - new product development
+notes:
+  - Database-specific syntax must be reviewed by a human information specialist.
+  - Search blocks are starting points, not validated exhaustive strategies.

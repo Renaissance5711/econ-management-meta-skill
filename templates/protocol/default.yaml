@@ -1,0 +1,28 @@
+research_question: ""
+unit_of_inference: ""
+eligibility:
+  populations: []
+  exposures: []
+  outcomes: []
+  designs: []
+evidence_lanes: []
+search_plan: {}
+screening_plan:
+  title_abstract_reviewers: 2
+  fulltext_reviewers: 2
+  independent: true
+  ai_final_decision: false
+extraction_plan:
+  extractors: 2
+  independent: true
+  human_verification: true
+ai_assistance:
+  search_term_suggestion: true
+  screening_recommendation: true
+  final_screening_decision: false
+  final_extraction_decision: false
+analyses:
+  primary: []
+  secondary: []
+  sensitivity: []
+  exploratory: []

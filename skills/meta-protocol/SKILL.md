@@ -1,7 +1,7 @@
 ---
 name: meta-protocol
 description: Develop and version the review protocol and analysis-registration boundaries.
-version: 0.1.0
+version: 0.2.0
 license: Apache-2.0
 status: experimental
 ---
@@ -24,6 +24,6 @@ Create new, versioned files inside the corresponding project stage and append de
 
 Stop on missing provenance, invalid profile or project schema, unresolved reviewer conflict, an unlocked prerequisite stage, a stale integrity lock, or any attempt to weaken core gates.
 
-## v0.1.0 availability
+## v0.2.0 availability
 
-Protocol artifact authoring is guidance-only; automated protocol production is UNAVAILABLE_IN_VERSION.
+Schema-validated protocol creation, validation, immutable versioning, and classified amendments are AVAILABLE_IN_VERSION. OSF submission and analysis-specification generation remain UNAVAILABLE_IN_VERSION.

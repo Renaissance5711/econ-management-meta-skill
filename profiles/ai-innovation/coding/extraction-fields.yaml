@@ -1,0 +1,26 @@
+schema_version: 1
+fields:
+  - id: sample-size
+    label: Analytical sample size
+    type: integer
+    required: true
+  - id: analysis-level
+    label: Unit of analysis
+    type: categorical
+    allowed: [individual, team, firm, patent, industry, country]
+  - id: ai-construct
+    label: Reported AI construct
+    type: string
+  - id: innovation-outcome
+    label: Reported innovation outcome
+    type: string
+  - id: design-family
+    label: Study design family
+    type: categorical
+    allowed: [experiment, cross-sectional, panel, difference-in-differences, regression-discontinuity, instrumental-variables, synthetic-control, other]
+  - id: source-statistics
+    label: Statistics needed to reconstruct the effect
+    type: object
+notes:
+  - Every value requires a page or section and a short supporting quotation.
+  - This field list is a starting contract and requires protocol-specific extension.

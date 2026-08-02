@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Human Screening Decision",
+  "type": "object",
+  "required": ["decision_id", "timestamp", "stage", "record_id", "reviewer", "decision", "reason_code", "source_page", "note"],
+  "additionalProperties": false,
+  "properties": {
+    "decision_id": {"type": "string", "pattern": "^SCR-[A-F0-9]{16}$"},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "stage": {"enum": ["title-abstract", "fulltext"]},
+    "record_id": {"type": "string", "minLength": 1},
+    "reviewer": {"type": "string", "minLength": 2},
+    "decision": {"enum": ["INCLUDE", "EXCLUDE", "UNCERTAIN"]},
+    "reason_code": {"type": ["string", "null"]},
+    "source_page": {"type": ["string", "null"]},
+    "note": {"type": ["string", "null"]}
+  }
+}

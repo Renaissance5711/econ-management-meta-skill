@@ -1,7 +1,7 @@
 ---
 name: meta-search
 description: Design and audit reproducible literature-search provenance.
-version: 0.1.0
+version: 0.2.0
 license: Apache-2.0
 status: experimental
 ---
@@ -24,6 +24,6 @@ Create new, versioned files inside the corresponding project stage and append de
 
 Stop on missing provenance, invalid profile or project schema, unresolved reviewer conflict, an unlocked prerequisite stage, a stale integrity lock, or any attempt to weaken core gates.
 
-## v0.1.0 availability
+## v0.2.0 availability
 
-Search execution, import, deduplication, and citation chasing are UNAVAILABLE_IN_VERSION.
+Search-run registration, CSV/RIS/BibTeX/EndNote XML import, provenance retention, and deterministic report-level deduplication are AVAILABLE_IN_VERSION. Live database execution, API harvesting, and citation chasing remain UNAVAILABLE_IN_VERSION.

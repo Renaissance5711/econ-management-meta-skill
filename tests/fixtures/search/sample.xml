@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml><records><record>
+<rec-number>XML-1</rec-number>
+<contributors><authors><author><style face="normal">Garcia, Ana</style></author></authors></contributors>
+<titles><title><style face="normal">Generative AI and Creativity</style></title><secondary-title><style face="normal">Journal C</style></secondary-title></titles>
+<dates><year><style face="normal">2025</style></year></dates>
+<electronic-resource-num><style face="normal">10.1000/xml.3</style></electronic-resource-num>
+<abstract><style face="normal">XML abstract</style></abstract>
+</record></records></xml>
