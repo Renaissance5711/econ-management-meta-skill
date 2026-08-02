@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Imported Bibliographic Record",
+  "type": "object",
+  "required": ["record_id", "source_record_id", "search_run_id", "title", "authors", "year", "doi", "abstract", "journal", "source_file", "source_row", "provenance_id", "verification_status"],
+  "additionalProperties": false,
+  "properties": {
+    "record_id": {"type": "string", "pattern": "^REC-[A-F0-9]{16}$"},
+    "source_record_id": {"type": "string", "minLength": 1},
+    "search_run_id": {"type": "string", "pattern": "^SRCH-[A-F0-9]{16}$"},
+    "title": {"type": "string", "minLength": 1},
+    "authors": {"type": "string"},
+    "year": {"type": "string", "pattern": "^(|\\d{4})$"},
+    "doi": {"type": "string"},
+    "abstract": {"type": "string"},
+    "journal": {"type": "string"},
+    "source_file": {"type": "string", "minLength": 1},
+    "source_row": {"type": "string", "minLength": 1},
+    "provenance_id": {"type": "string", "pattern": "^PROV-[A-F0-9]{16}$"},
+    "verification_status": {"const": "IMPORTED"}
+  }
+}

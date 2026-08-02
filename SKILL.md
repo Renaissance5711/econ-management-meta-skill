@@ -1,14 +1,14 @@
 ---
 name: econ-management-meta
 description: Orchestrate a fail-closed economics and management meta-analysis project using verified file artifacts.
-version: 0.1.0
+version: 0.2.0
 license: Apache-2.0
 status: experimental
 ---
 
 # Econ–Management Meta Skill
 
-Use this skill to initialize, validate, and govern a file-first meta-analysis project. Version 0.1.0 is an architecture and schema prototype; it does not execute the publication-grade statistical pipeline described in the design specification.
+Use this skill to initialize, validate, and govern a file-first meta-analysis project. Version 0.2.0 executes protocol versioning, bibliographic import and deduplication, human screening consensus, report-family mapping, and dual extraction.
 
 ## Mandatory invocation sequence
 
@@ -29,7 +29,7 @@ Stop on invalid profiles, missing mandatory artifacts, illegal state transitions
 
 ## Version boundary
 
-When a requested operation requires search execution, screening automation, extraction, construct adjudication, effect-size computation, R synthesis, publication-bias modeling, Quarto rendering, or submission-package generation, stop with `UNAVAILABLE_IN_VERSION`. Explain that v0.1.0 provides governance, validation, project initialization, state transitions, and integrity locks only.
+Structured protocol creation/amendment, search-run registration, CSV/RIS/BibTeX/EndNote XML import, deterministic report deduplication, human screening decisions, report-family reconciliation, and dual extraction are available. Live database querying, active-learning prioritization, PDF extraction, construct/estimand adjudication, effect-size computation, R synthesis, publication-bias modeling, Quarto rendering, and submission-package generation must stop with `UNAVAILABLE_IN_VERSION`.
 
 ## Core commands
 

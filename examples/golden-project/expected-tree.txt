@@ -25,10 +25,15 @@ manuscript/
 profiles/
 profiles/active/
 profiles/active/coding/
+profiles/active/coding/extraction-fields.yaml
 profiles/active/coding/moderators.yaml
+profiles/active/eligibility/
+profiles/active/eligibility/boundary-cases.yaml
 profiles/active/ontology/
 profiles/active/ontology/constructs.yaml
 profiles/active/profile.yaml
+profiles/active/search/
+profiles/active/search/concept-blocks.yaml
 profiles/active/tests/
 profiles/active/tests/invalid-cases.yaml
 profiles/active/tests/valid-cases.yaml

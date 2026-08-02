@@ -1,7 +1,7 @@
 ---
 name: meta-screening
 description: Govern human screening and active-learning prioritization.
-version: 0.1.0
+version: 0.2.0
 license: Apache-2.0
 status: experimental
 ---
@@ -24,6 +24,6 @@ Create new, versioned files inside the corresponding project stage and append de
 
 Stop on missing provenance, invalid profile or project schema, unresolved reviewer conflict, an unlocked prerequisite stage, a stale integrity lock, or any attempt to weaken core gates.
 
-## v0.1.0 availability
+## v0.2.0 availability
 
-Screening execution and active learning are UNAVAILABLE_IN_VERSION.
+Independent human decisions, agreement summaries, conflict adjudication, and consensus export are AVAILABLE_IN_VERSION. Active-learning prioritization and audited early stopping remain UNAVAILABLE_IN_VERSION.

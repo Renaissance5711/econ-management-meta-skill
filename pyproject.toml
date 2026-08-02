@@ -1,6 +1,6 @@
 [project]
 name = "econ-management-meta-skill"
-version = "0.1.0"
+version = "0.2.0"
 description = "Fail-closed architecture prototype for economics and management meta-analysis workflows"
 requires-python = ">=3.11"
 dependencies = ["PyYAML>=6.0", "jsonschema>=4.23"]

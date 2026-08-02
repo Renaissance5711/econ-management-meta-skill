@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Search Run",
+  "type": "object",
+  "required": ["search_run_id", "created_at", "executed_by", "database", "platform", "search_date", "query", "hit_count", "export_batch"],
+  "additionalProperties": false,
+  "properties": {
+    "search_run_id": {"type": "string", "pattern": "^SRCH-[A-F0-9]{16}$"},
+    "created_at": {"type": "string", "format": "date-time"},
+    "executed_by": {"type": "string", "minLength": 2},
+    "database": {"type": "string", "minLength": 1},
+    "platform": {"type": "string", "minLength": 1},
+    "search_date": {"type": "string", "format": "date"},
+    "query": {"type": "string", "minLength": 1},
+    "hit_count": {"type": "integer", "minimum": 0},
+    "export_batch": {"type": "string", "minLength": 1}
+  }
+}

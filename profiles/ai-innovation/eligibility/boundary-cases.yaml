@@ -1,0 +1,11 @@
+schema_version: 1
+boundary_cases:
+  - case: AI used only as the researcher's text-analysis method
+    default: exclude
+    rationale: It is not an organizational AI exposure or intervention.
+  - case: General digital capability without a separable AI component
+    default: exclude
+    rationale: The AI construct is not identifiable.
+  - case: Student creativity experiment using generative AI
+    default: profile-dependent
+    rationale: Retain only when the protocol includes individual-level experimental evidence.

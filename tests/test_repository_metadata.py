@@ -7,8 +7,8 @@ def test_readmes_do_not_claim_unimplemented_publication_pipeline() -> None:
     english = Path("README.md").read_text(encoding="utf-8")
     chinese = Path("README.zh-CN.md").read_text(encoding="utf-8")
 
-    assert "architecture and schema prototype" in english
-    assert "架构与Schema原型" in chinese
+    assert "executable evidence-acquisition and coding workflow" in english
+    assert "证据获取与双人编码工作流" in chinese
     assert "publication-grade workflow is not yet implemented" in english
     assert "投稿级完整工作流尚未实现" in chinese
 
@@ -16,7 +16,7 @@ def test_readmes_do_not_claim_unimplemented_publication_pipeline() -> None:
 def test_license_and_citation_metadata_exist() -> None:
     assert "Apache License" in Path("LICENSE").read_text(encoding="utf-8")
     citation = yaml.safe_load(Path("CITATION.cff").read_text(encoding="utf-8"))
-    assert citation["version"] == "0.1.0"
+    assert citation["version"] == "0.2.0"
     assert citation["license"] == "Apache-2.0"
 
 

@@ -25,7 +25,7 @@ def test_cli_version_returns_machine_readable_version() -> None:
     result = run_cli("version")
 
     assert result.returncode == 0
-    assert json.loads(result.stdout) == {"version": "0.1.0"}
+    assert json.loads(result.stdout) == {"version": "0.2.0"}
 
 
 def test_cli_validates_safe_profile() -> None:

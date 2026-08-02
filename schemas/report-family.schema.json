@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Report Family Assignment",
+  "type": "object",
+  "required": ["assignment_id", "timestamp", "report_id", "report_family_id", "study_id", "version_role", "assigned_by", "evidence", "human_verified"],
+  "additionalProperties": false,
+  "properties": {
+    "assignment_id": {"type": "string", "pattern": "^RFA-[A-F0-9]{16}$"},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "report_id": {"type": "string", "minLength": 1},
+    "report_family_id": {"type": "string", "minLength": 1},
+    "study_id": {"type": "string", "minLength": 1},
+    "version_role": {"enum": ["WORKING_PAPER", "CONFERENCE", "DISSERTATION", "ACCEPTED_MANUSCRIPT", "JOURNAL_ARTICLE", "OTHER"]},
+    "assigned_by": {"type": "string", "minLength": 2},
+    "evidence": {"type": "string", "minLength": 5},
+    "human_verified": {"const": true}
+  }
+}

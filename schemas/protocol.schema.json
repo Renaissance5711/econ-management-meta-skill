@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Econ–Management Meta Protocol",
+  "type": "object",
+  "required": [
+    "version", "created_at", "approved_by", "status", "research_question",
+    "unit_of_inference", "eligibility", "evidence_lanes", "search_plan",
+    "screening_plan", "extraction_plan", "ai_assistance", "analyses"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "version": {"type": "string", "pattern": "^\\d+\\.\\d+$"},
+    "created_at": {"type": "string", "format": "date-time"},
+    "approved_by": {"type": "string", "minLength": 2},
+    "status": {"const": "APPROVED"},
+    "research_question": {"type": "string", "minLength": 10},
+    "unit_of_inference": {"type": "string", "minLength": 2},
+    "eligibility": {
+      "type": "object",
+      "required": ["populations", "exposures", "outcomes", "designs"],
+      "additionalProperties": true,
+      "properties": {
+        "populations": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "exposures": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "outcomes": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "designs": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "evidence_lanes": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "search_plan": {"type": "object", "minProperties": 1},
+    "screening_plan": {
+      "type": "object",
+      "required": ["title_abstract_reviewers", "fulltext_reviewers", "independent", "ai_final_decision"],
+      "additionalProperties": true,
+      "properties": {
+        "title_abstract_reviewers": {"type": "integer", "minimum": 2},
+        "fulltext_reviewers": {"type": "integer", "minimum": 2},
+        "independent": {"const": true},
+        "ai_final_decision": {"const": false}
+      }
+    },
+    "extraction_plan": {
+      "type": "object",
+      "required": ["extractors", "independent", "human_verification"],
+      "additionalProperties": true,
+      "properties": {
+        "extractors": {"type": "integer", "minimum": 2},
+        "independent": {"const": true},
+        "human_verification": {"const": true}
+      }
+    },
+    "ai_assistance": {
+      "type": "object",
+      "required": ["final_screening_decision", "final_extraction_decision"],
+      "additionalProperties": true,
+      "properties": {
+        "final_screening_decision": {"const": false},
+        "final_extraction_decision": {"const": false}
+      }
+    },
+    "analyses": {
+      "type": "object",
+      "required": ["primary", "secondary", "sensitivity", "exploratory"],
+      "additionalProperties": false,
+      "properties": {
+        "primary": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "secondary": {"type": "array", "items": {"type": "string"}},
+        "sensitivity": {"type": "array", "items": {"type": "string"}},
+        "exploratory": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  }
+}
