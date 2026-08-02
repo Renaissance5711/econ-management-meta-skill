@@ -457,46 +457,34 @@ The default sequence is:
 
 `trim-and-fill` is exploratory only. Fail-safe `N` is not accepted as evidence that publication bias is absent.
 
-Output judgment:
-
-```text
-LOW_RISK
-SOME_CONCERNS
-HIGH_RISK
-UNASSESSABLE
-```
-
-### Stage 13 — Three-layer evidence appraisal
+### Stage 13 — Three-layer evidence credibility
 
 #### Layer 1: effect-level risk of bias
 
-Core domains:
+Domains adapt to study design and include:
 
 - selection or assignment;
 - confounding and endogeneity;
 - temporal ordering and reverse causality;
-- exposure or intervention classification;
+- exposure/intervention classification;
 - missing data and attrition;
 - outcome measurement;
-- selective analysis and selective reporting.
+- selective analysis and reporting.
 
-Judgments include severity, likely direction, rationale, source pages, and dual-review resolution.
+Each judgment records direction of bias, rationale, supporting pages, reviewer decisions, and human verification.
 
 #### Layer 2: methodological and reporting descriptors
 
-These are recorded separately and not added into a quality score:
-
 - construct validity;
-- measurement reliability;
-- sampling and external validity;
+- reliability;
+- representativeness and external validity;
 - precision;
-- effect-size extractability;
+- extractability;
+- transparency and open materials;
 - preregistration;
-- data, code, and reporting transparency.
+- data/code availability.
 
-#### Layer 3: synthesis-level evidence confidence
-
-Each substantive conclusion considers:
+#### Layer 3: synthesis-level confidence
 
 - study-level risk of bias;
 - inconsistency;
@@ -506,11 +494,11 @@ Each substantive conclusion considers:
 - sample dependence and overlap;
 - estimand alignment.
 
-The project will use a management/economics **Evidence Confidence Profile**, not a mechanically transplanted GRADE score.
+The workflow does not compute a universal additive quality score and does not use arbitrary quality weights.
 
 ### Stage 14 — Journal-ready reporting
 
-Quarto is the single manuscript source. Generated artifacts include:
+Quarto is the normative manuscript source. The output engine creates, as appropriate:
 
 ```text
 manuscript.docx
@@ -528,37 +516,31 @@ reproduction-guide.md
 submission-manifest.json
 ```
 
-Reporting profiles route PRISMA 2020, PRISMA-S, and MOOSE requirements according to review type. Reporting completion is not treated as a methodological quality score.
+Reporting profiles route PRISMA 2020, PRISMA-S, and MOOSE requirements by review type. Completion of a reporting checklist is not treated as a study-quality score.
 
-Every quantitative claim is traceable:
+Every manuscript claim is linked to a result, model, effect pool, and source evidence. Claim audit blocks associational findings written as causal and blocks certainty language exceeding the synthesis-confidence judgment.
 
-```text
-manuscript claim
-→ table/figure cell
-→ model result ID
-→ R result object
-→ effect-pool lock
-→ verified source statistics
-```
+### Stage 15 — Fail-closed publication QA
 
-A claim audit blocks causal language when the evidence lane is associational.
+The QA engine performs:
 
-### Stage 15 — Publication QA and release candidate
+- schema validation;
+- verification-status checks;
+- ID reconciliation;
+- effect recomputation;
+- dependency checks;
+- lock verification;
+- model-to-table and model-to-figure comparisons;
+- PRISMA count reconciliation;
+- claim audit;
+- protocol-deviation reporting;
+- clean-room rebuilding.
 
-A clean-room rebuild must:
+P0 blocking errors prevent release. P1 errors must be resolved before submission. P2 findings must be disclosed.
 
-1. clone the repository into a fresh directory;
-2. restore Python and R environments;
-3. validate raw inputs;
-4. rebuild verified datasets;
-5. rerun all models;
-6. regenerate figures and tables;
-7. render manuscript and supplement;
-8. compare artifacts with the release manifest.
+## 6. Project State and Audit Model
 
-## 6. State, Locks, and Provenance
-
-Canonical project state:
+Canonical project files:
 
 ```text
 project.yaml
@@ -571,99 +553,68 @@ locks/effect-size-pool-v*.lock.yaml
 locks/analysis-spec-v*.lock.yaml
 ```
 
-### 6.1 State transitions
+### 6.1 Pipeline state
 
-A stage can be:
+Each stage records:
+
+```yaml
+stage_id: effect-size
+status: VERIFIED
+started_at: 2026-08-03T10:00:00Z
+completed_at: 2026-08-05T16:30:00Z
+verified_by:
+  - reviewer_1
+  - reviewer_2
+inputs:
+  extraction_manifest: sha256:...
+outputs:
+  effect_pool: sha256:...
+protocol_version: 1.1
+analysis_spec_version: null
+```
+
+Allowed statuses:
 
 ```text
 NOT_STARTED
 IN_PROGRESS
-AWAITING_HUMAN_REVIEW
 BLOCKED
+READY_FOR_REVIEW
 VERIFIED
 LOCKED
 SUPERSEDED
 ```
 
-Only `VERIFIED` or `LOCKED` stages can feed downstream primary artifacts.
+`AI_SUGGESTED` and `UNVERIFIED` are artifact-verification states, not completed pipeline states.
 
 ### 6.2 Decision log
 
-Every consequential human action records:
+Every consequential decision stores:
 
-- decision ID;
-- object ID;
-- previous value;
-- new value;
-- actor;
+- stable ID;
 - timestamp;
+- actor;
+- stage;
+- decision type;
+- original value;
+- revised value;
 - rationale;
-- evidence reference;
-- protocol and schema versions.
+- evidence location;
+- result information already observed;
+- human-verification status;
+- affected artifacts.
 
-### 6.3 Integrity rules
+### 6.3 Lock behavior
 
-- Raw imports are immutable.
-- Verified data are never edited without a new version.
-- Generated result tables and figures are not hand-corrected.
-- Manuscript numbers are inserted from result objects.
-- Lock hashes are checked before every downstream stage.
+- Locked files are never silently overwritten.
+- Any change creates a new version and a new hash.
+- Downstream artifacts become stale when an upstream lock changes.
+- Regeneration begins at the first affected stage.
+- Every result and manuscript output records the precise lock versions used.
 
-## 7. AI Governance
+## 7. Profile Contract
 
-### 7.1 Allowed AI functions
-
-- search-term and synonym suggestions;
-- deduplication candidates;
-- record prioritization;
-- extraction suggestions with source location;
-- construct and estimand mapping suggestions;
-- duplicate-sample alerts;
-- code generation and test generation;
-- manuscript drafting from verified results;
-- inconsistency and claim audits.
-
-### 7.2 Human-only decisions
-
-- final eligibility;
-- final construct and moderator coding;
-- approval of raw source statistics;
-- approval of effect-size transformation;
-- duplicate-sample resolution;
-- protocol amendments;
-- primary analysis specification;
-- evidence-confidence judgment;
-- final interpretation and causal language.
-
-### 7.3 Prohibited AI behavior
-
-- silent inference of unreported statistics;
-- treating missing information as zero or “not applicable”;
-- inventing bibliographic records;
-- converting approximate values into verified values;
-- overwriting human decisions;
-- approving its own extraction or screening suggestion as an independent reviewer.
-
-## 8. Domain Profile Contract
-
-### 8.1 Profile architecture
-
-Profiles are schema-governed declarative packages without executable code in version 1.0.
-
-```text
-profiles/<profile-id>/
-├── profile.yaml
-├── README.md
-├── ontology/
-├── eligibility/
-├── search/
-├── coding/
-├── risk-of-bias/
-├── reporting/
-└── tests/
-```
-
-Required metadata:
+### 7.1 Profile manifest
 
 ```yaml
 profile:
@@ -674,51 +625,49 @@ profile:
   core_compatibility: ">=0.1.0,<1.0.0"
   language: en
   status: experimental
-  extends: core-management-meta
+extends: core-management-meta
 ```
 
-### 8.2 Profile permissions
+### 7.2 Permitted extensions
 
-Profiles may:
+A profile may:
 
-- add constructs and aliases;
-- define construct relationships and measurement proxies;
+- add domain constructs and synonyms;
+- define adjacent but excluded constructs;
+- add search concept blocks and translations;
 - add eligibility boundary cases;
-- provide database-specific search blocks;
-- define theoretical moderators and coding rules;
-- extend risk-of-bias questions;
-- define recommended terminology, tables, and Chinese explanatory materials;
-- impose stricter gates.
+- add theoretical and methodological moderators;
+- add design-specific risk-of-bias prompts;
+- add terminology and reporting templates;
+- require stricter thresholds.
 
-Profiles may not:
+### 7.3 Forbidden overrides
 
-- reduce reviewer requirements;
-- allow AI final decisions;
-- bypass alignment gates;
-- accept unverified effects;
-- disable dependency or sample-overlap handling;
-- alter confirmatory/exploratory labels after outcomes are seen;
-- disable cross-artifact QA.
+A profile may not:
 
-### 8.3 Profile validation
+- allow AI final screening decisions;
+- reduce full-text review below two independent humans;
+- admit unverified effect sizes;
+- bypass construct or estimand gates;
+- disable dependency or overlap checks;
+- disable protocol or analysis locks;
+- relabel post-outcome exploration as confirmatory;
+- disable manuscript–result consistency checks.
 
-Validation checks:
+### 7.4 Profile loading
 
-- schema compliance;
-- unique IDs;
-- core compatibility;
-- source and rationale for search blocks;
-- complete coding rules for moderators;
-- no forbidden override;
-- positive and negative test cases.
+Profiles contain no executable code in version 1.0. Loading order:
 
-Version 1.0 supports one base profile only. Multi-profile inheritance is deferred.
+1. validate profile schema;
+2. validate core compatibility;
+3. validate unique IDs and references;
+4. test that overrides only strengthen requirements;
+5. run profile positive and negative fixtures;
+6. copy the validated profile into the project manifest.
 
-## 9. AI-and-Innovation Profile
+## 8. AI-and-Innovation Profile
 
-The first official profile will include bilingual construct documentation.
-
-### 9.1 AI-side ontology
+### 8.1 AI construct tree
 
 ```text
 AI exposure
@@ -734,7 +683,7 @@ AI exposure
 └── generative-AI intervention
 ```
 
-### 9.2 Innovation-side ontology
+### 8.2 Innovation outcome tree
 
 ```text
 Innovation outcomes
@@ -760,30 +709,95 @@ Innovation outcomes
     └── technological distance
 ```
 
-### 9.3 Initial theory moderators
+### 8.3 Initial moderators
 
-- AI role: automation, augmentation, search, prediction, technological input, coordination/bridging;
+#### Theoretical moderators
+
+- automation versus augmentation;
 - innovation stage;
-- participant or workforce expertise;
 - task complexity;
+- participant or worker expertise;
 - knowledge distance;
-- organizational complementary assets;
+- organizational complementarity;
 - environmental uncertainty;
-- model type and version for generative-AI experiments;
-- subjective versus objective measurement;
-- cross-sectional versus longitudinal or causal design.
+- human–AI interaction structure.
 
-### 9.4 AI/ML measurement risk-of-bias extensions
+#### Method moderators
 
-- training-label validity;
-- train/test and temporal leakage;
-- external validation;
-- threshold selection;
-- class imbalance;
-- model-version documentation;
+- self-report versus objective outcomes;
+- cross-sectional versus longitudinal;
+- same-source versus multisource;
+- published versus unpublished;
+- direct measure versus indirect proxy;
+- experimental-control condition;
+- weak versus strong causal identification.
+
+## 9. Study-Design Modules
+
+### 9.1 Randomized experiments
+
+Assess:
+
+- randomization and allocation;
+- baseline equivalence;
+- attrition;
+- intervention fidelity;
+- blinding where meaningful;
+- outcome measurement;
+- selective reporting;
+- treatment/control contrast definition.
+
+### 9.2 Survey and cross-sectional studies
+
+Assess:
+
+- sampling frame;
+- common-method risk;
+- construct validity;
+- adjustment-set consistency;
+- temporal ambiguity;
+- nonresponse;
+- selective model reporting.
+
+### 9.3 Archival panel studies
+
+Assess:
+
+- sample construction;
+- variable measurement;
+- unit and time alignment;
+- missing panel observations;
+- fixed-effects structure;
+- serial dependence;
+- reverse causality;
+- specification selection.
+
+### 9.4 Quasi-experimental designs
+
+The profile routes to design-specific prompts for:
+
+- difference-in-differences;
+- regression discontinuity;
+- instrumental variables;
+- synthetic control;
+- matching and weighting;
+- event studies.
+
+Each module evaluates its identifying assumptions rather than using a generic observational checklist.
+
+### 9.5 Patent, bibliometric, text, and ML measurement
+
+Assess:
+
+- database coverage;
+- unit of analysis;
+- name/entity disambiguation;
+- classification and search-query validity;
+- truncation and citation-window effects;
+- text-dictionary or classifier validation;
+- train/test leakage;
 - domain shift;
-- human-validation protocol;
-- prompt, sampling, and output-selection reproducibility for generative-AI experiments.
+- model-version and threshold documentation.
 
 ## 10. Quality Assurance
 
@@ -1019,3 +1033,5 @@ The tool will not claim that:
 ## 20. Review Gate
 
 The user approved this written specification on 2026-08-03. The next artifact is a detailed implementation plan with tasks, tests, dependencies, review checkpoints, and release milestones.
+
+Implementation plan: [`../plans/2026-08-03-callable-core-v0.1.0.md`](../plans/2026-08-03-callable-core-v0.1.0.md).

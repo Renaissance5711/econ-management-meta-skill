@@ -1,0 +1,4 @@
+cases:
+  - id: minimum-safe-profile
+    expected: valid
+    manifest: profile.yaml

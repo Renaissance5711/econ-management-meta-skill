@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "Please cite this software if you use it in a research workflow."
+title: "Econ–Management Meta Skill"
+type: software
+version: 0.1.0
+date-released: 2026-08-03
+license: Apache-2.0
+authors:
+  - family-names: "丁"
+    given-names: "文毅"
+repository-code: "https://github.com/Renaissance5711/econ-management-meta-skill"
+abstract: "A fail-closed architecture and schema prototype for economics and management meta-analysis workflows."
+keywords:
+  - meta-analysis
+  - systematic-review
+  - management
+  - economics
+  - research-software

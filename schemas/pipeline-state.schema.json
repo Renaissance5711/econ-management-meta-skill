@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Econ–Management Meta Pipeline State",
+  "type": "object",
+  "required": ["schema_version", "project_id", "stages", "history"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": 1},
+    "project_id": {"type": "string"},
+    "stages": {
+      "type": "object",
+      "minProperties": 16,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["status"],
+        "additionalProperties": true,
+        "properties": {
+          "status": {"enum": ["NOT_STARTED", "IN_PROGRESS", "BLOCKED", "READY_FOR_REVIEW", "VERIFIED", "LOCKED"]}
+        }
+      }
+    },
+    "history": {"type": "array"}
+  }
+}

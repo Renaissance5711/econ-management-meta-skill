@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Econ–Management Meta Integrity Lock",
+  "type": "object",
+  "required": ["kind", "version", "created_at", "created_by", "core_version", "artifacts", "aggregate_sha256"],
+  "additionalProperties": false,
+  "properties": {
+    "kind": {"enum": ["protocol", "study-pool", "effect-size-pool", "analysis-spec"]},
+    "version": {"type": "string", "pattern": "^\\d+\\.\\d+(?:\\.\\d+)?$"},
+    "created_at": {"type": "string", "format": "date-time"},
+    "created_by": {"type": "string", "minLength": 1},
+    "core_version": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+    "artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["path", "sha256"],
+        "additionalProperties": false,
+        "properties": {
+          "path": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+        }
+      }
+    },
+    "aggregate_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}

@@ -1,0 +1,10 @@
+schema_version: 1
+name: econ-management-meta
+version: 0.1.0
+root_skill: SKILL.md
+stage_skills_glob: skills/*/SKILL.md
+cli: emm
+safety_contract:
+  human_final_decisions: true
+  fail_closed: true
+  profiles_cannot_weaken_core: true
